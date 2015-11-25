@@ -3,6 +3,7 @@
 namespace App\JoboardBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
+use App\JoboardBundle\Utils\Joboard as Joboard;
 
 /**
  * Category
@@ -28,6 +29,10 @@ class Category
      * @var \Doctrine\Common\Collections\Collection
      */
     private $affiliates;
+
+    private $activeJobs;
+
+    private $moreJobs;
 
     /**
      * Constructor
@@ -135,6 +140,31 @@ class Category
     public function getAffiliates()
     {
         return $this->affiliates;
+    }
+
+    public function setActiveJobs($jobs)
+    {
+        $this->activeJobs = $jobs;
+    }
+
+    public function getActiveJobs()
+    {
+        return $this->activeJobs;
+    }
+
+    public function getSlug()
+    {
+        return Joboard::slugify($this->getName());
+    }
+
+    public function setMoreJobs($jobs)
+    {
+        $this->moreJobs = $jobs >=  0 ? $jobs : 0;
+    }
+
+    public function getMoreJobs()
+    {
+        return $this->moreJobs;
     }
 
     public function __toString()

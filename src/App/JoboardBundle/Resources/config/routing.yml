@@ -3,6 +3,9 @@ AppJoboardBundle_job:
     prefix:   /job
 
 app_joboard_homepage:
-    path:     /hello/{name}
-    defaults: { _controller: AppJoboardBundle:Default:index }
+    pattern:  /
+    defaults: { _controller: AppJoboardBundle:Job:index }
 
+AppJoboardBundle_category:
+    pattern:   /category/{slug}/
+    defaults: { _controller: AppJoboardBundle:Category:show }
