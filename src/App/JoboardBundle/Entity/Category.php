@@ -30,9 +30,9 @@ class Category
      */
     private $affiliates;
 
-    private $activeJobs;
-
     private $moreJobs;
+
+    private $slug;
 
     /**
      * Constructor
@@ -152,6 +152,11 @@ class Category
         return $this->activeJobs;
     }
 
+    public function getSlug()
+    {
+        return Joboard::slugify($this->getName());
+    }
+
     public function setMoreJobs($jobs)
     {
         $this->moreJobs = $jobs >=  0 ? $jobs : 0;
@@ -162,15 +167,11 @@ class Category
         return $this->moreJobs;
     }
 
+
     public function __toString()
     {
         return $this->getName() ? $this->getName() : "";
     }
-    /**
-     * @var string
-     */
-    private $slug;
-
 
     /**
      * Set slug
@@ -183,16 +184,6 @@ class Category
         $this->slug = $slug;
     
         return $this;
-    }
-
-    /**
-     * Get slug
-     *
-     * @return string 
-     */
-    public function getSlug()
-    {
-        return $this->slug;
     }
     /**
      * @ORM\PrePersist

@@ -22,9 +22,7 @@
 	    "sonata-project/admin-bundle": "dev-master",
 	    "sonata-project/doctrine-orm-admin-bundle": "dev-master",
         "doctrine/doctrine-fixtures-bundle": "dev-master",
-        "doctrine/data-fixtures": "dev-master",
-        "phpunit/phpunit": "4.8",
-        "ext-xdebug": ">=2.1.4"
+        "doctrine/data-fixtures": "dev-master"
     },
     "require-dev": {
         "sensio/generator-bundle": "~2.3"

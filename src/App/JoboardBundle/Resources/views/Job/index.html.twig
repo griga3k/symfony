@@ -1,4 +1,4 @@
-{% extends '::base.html.twig' %}
+{% extends "::base.html.twig" %}
 
 {% block stylesheets %}
     {{ parent() }}
@@ -17,7 +17,19 @@
                     <h1><a href="{{ path('AppJoboardBundle_category', {'slug': category.slug}) }}">{{ category.name }}</a></h1>
 
                 </div>
-                {{ include ('AppJoboardBundle:Job:list.html.twig', {'jobs': category.activejobs}) }}
+                <table class="jobs">
+                    {% for entity in category.activejobs %}
+                        <tr class="{{ cycle(['even', 'odd'], loop.index) }}">
+                            <td class="location">{{ entity.location }}</td>
+                            <td class="position">
+                                <a href="{{ path('app_job_show', { 'id': entity.id, 'company': entity.companyslug, 'location': entity.locationslug, 'position': entity.positionslug }) }}">
+                                    {{ entity.position }}
+                                </a>
+                            </td>
+                            <td class="company">{{ entity.company }}</td>
+                        </tr>
+                    {% endfor %}
+                </table>
                 {% if category.morejobs %}
                     <div class="more-jobs text-right">
                         и <a href="{{ path('AppJoboardBundle_category', {'slug': category.slug}) }}">{{ category.morejobs }}</a>

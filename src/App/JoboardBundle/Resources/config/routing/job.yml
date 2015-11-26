@@ -1,5 +1,5 @@
 app_job:
-    path:     /
+    pattern:  /
     defaults: { _controller: "AppJoboardBundle:Job:index" }
 
 app_job_show:
@@ -9,24 +9,24 @@ app_job_show:
         id:  \d+
 
 app_job_new:
-    path:     /new
+    pattern:  /new
     defaults: { _controller: "AppJoboardBundle:Job:new" }
 
 app_job_create:
-    path:     /create
+    pattern:  /create
     defaults: { _controller: "AppJoboardBundle:Job:create" }
-    methods:  POST
+    requirements: { _method: post }
 
 app_job_edit:
-    path:     /{id}/edit
+    pattern:  /{id}/edit
     defaults: { _controller: "AppJoboardBundle:Job:edit" }
 
 app_job_update:
-    path:     /{id}/update
+    pattern:  /{id}/update
     defaults: { _controller: "AppJoboardBundle:Job:update" }
-    methods:  [POST, PUT]
+    requirements: { _method: post|put }
 
 app_job_delete:
-    path:     /{id}/delete
+    pattern:  /{id}/delete
     defaults: { _controller: "AppJoboardBundle:Job:delete" }
-    methods:  [POST, DELETE]
+    requirements: { _method: post|delete }

@@ -43,8 +43,7 @@ class JobController extends Controller
             'categories' => $categories
         ));
     }
-
-/**
+    /**
      * Creates a new Job entity.
      *
      */
@@ -110,7 +109,8 @@ class JobController extends Controller
     {
         $em = $this->getDoctrine()->getManager();
 
-        $entity = $entity = $em->getRepository('AppJoboardBundle:Job')->getActiveJob($id);
+        $entity = $em->getRepository('AppJoboardBundle:Job')->getActiveJob($id);
+
         if (!$entity) {
             throw $this->createNotFoundException('Unable to find Job entity.');
         }
@@ -118,7 +118,7 @@ class JobController extends Controller
         $deleteForm = $this->createDeleteForm($id);
 
         return $this->render('AppJoboardBundle:Job:show.html.twig', array(
-            'entity'      => $entity,
+            'entity' => $entity,
             'delete_form' => $deleteForm->createView(),
         ));
     }

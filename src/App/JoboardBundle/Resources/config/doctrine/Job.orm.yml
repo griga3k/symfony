@@ -61,4 +61,4 @@ App\JoboardBundle\Entity\Job:
                 referencedColumnName: id
     lifecycleCallbacks:
         prePersist: [ setCreatedAtValue, setExpiresAtValue ]
-        preUpdate: [ setUpdatedAtValue ]
+        preUpdate: [setUpdatedAtValue]
