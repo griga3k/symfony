@@ -1,0 +1,29 @@
+Roal\JewelryBundle\Entity\Image:
+    type: entity
+    table: null
+    id:
+        id:
+            type: integer
+            id: true
+            generator:
+                strategy: AUTO
+    fields:
+        productId:
+            type: integer
+            column: product_id
+        userId:
+            type: integer
+            column: user_id
+        name:
+            type: string
+            length: 255
+        path:
+            type: string
+            length: 255
+        creationTs:
+            type: datetime
+            column: creation_ts
+        changeTs:
+            type: datetime
+            column: change_ts
+    lifecycleCallbacks: {  }

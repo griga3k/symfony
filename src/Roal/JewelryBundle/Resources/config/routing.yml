@@ -1,0 +1,15 @@
+roal_jewelry_image:
+    resource: "@RoalJewelryBundle/Resources/config/routing/image.yml"
+    prefix:   /image
+
+roal_jewelry_category:
+    resource: "@RoalJewelryBundle/Resources/config/routing/category.yml"
+    prefix:   /category
+
+roal_jewelry_product:
+    resource: "@RoalJewelryBundle/Resources/config/routing/product.yml"
+    prefix:   /product
+
+roal_jewelry_homepage:
+    path:     /
+    defaults: { _controller: RoalJewelryBundle:Product:index }

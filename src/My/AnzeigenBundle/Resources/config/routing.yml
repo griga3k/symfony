@@ -1,0 +1,3 @@
+my_anzeigen:
+    pattern:  /
+    defaults: { _controller: "MyAnzeigenBundle:Anzeige:index" }

@@ -1,0 +1,15 @@
+{% extends "::base2.html.twig" %}
+
+{% block content %}
+    <div id="anzeigen">
+        {% for anzeige in anzeigen %}
+            <div>
+                <div class="category">
+
+                    <h1><a href="link1">{{ anzeige.name }}</a></h1>
+
+                </div>
+            </div>
+        {% endfor %}
+    </div>
+{% endblock %}

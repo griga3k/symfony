@@ -16,14 +16,16 @@ class AppKernel extends Kernel
             new Symfony\Bundle\AsseticBundle\AsseticBundle(),
             new Doctrine\Bundle\DoctrineBundle\DoctrineBundle(),
             new Sensio\Bundle\FrameworkExtraBundle\SensioFrameworkExtraBundle(),
-            new AppBundle\AppBundle(),
             new Sonata\CoreBundle\SonataCoreBundle(),
             new Sonata\AdminBundle\SonataAdminBundle(),
             new Sonata\BlockBundle\SonataBlockBundle(),
             new Sonata\DoctrineORMAdminBundle\SonataDoctrineORMAdminBundle(),
             new Knp\Bundle\MenuBundle\KnpMenuBundle(),
-            new App\JoboardBundle\AppJoboardBundle(),
-            new Doctrine\Bundle\FixturesBundle\DoctrineFixturesBundle()
+            new Doctrine\Bundle\FixturesBundle\DoctrineFixturesBundle(),
+            new Roal\JewelryBundle\RoalJewelryBundle(),
+            new AppBundle\AppBundle(),
+            //new App\JoboardBundle\AppJoboardBundle(),
+            //new My\AnzeigenBundle\MyAnzeigenBundle(),
         );
 
         if (in_array($this->getEnvironment(), array('dev', 'test'))) {

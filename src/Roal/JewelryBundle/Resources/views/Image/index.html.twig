@@ -1,0 +1,51 @@
+{% extends '::base.html.twig' %}
+
+{% block content -%}
+    <h1>Image list</h1>
+
+    <table class="records_list">
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Productid</th>
+                <th>Userid</th>
+                <th>Name</th>
+                <th>Path</th>
+                <th>Creationts</th>
+                <th>Changets</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for entity in entities %}
+            <tr>
+                <td><a href="{{ path('image_show', { 'id': entity.id }) }}">{{ entity.id }}</a></td>
+                <td>{{ entity.productId }}</td>
+                <td>{{ entity.userId }}</td>
+                <td>{{ entity.name }}</td>
+                <td>{{ entity.path }}</td>
+                <td>{% if entity.creationTs %}{{ entity.creationTs|date('Y-m-d H:i:s') }}{% endif %}</td>
+                <td>{% if entity.changeTs %}{{ entity.changeTs|date('Y-m-d H:i:s') }}{% endif %}</td>
+                <td>
+                <ul>
+                    <li>
+                        <a href="{{ path('image_show', { 'id': entity.id }) }}">show</a>
+                    </li>
+                    <li>
+                        <a href="{{ path('image_edit', { 'id': entity.id }) }}">edit</a>
+                    </li>
+                </ul>
+                </td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+        <ul>
+        <li>
+            <a href="{{ path('image_new') }}">
+                Create a new entry
+            </a>
+        </li>
+    </ul>
+    {% endblock %}

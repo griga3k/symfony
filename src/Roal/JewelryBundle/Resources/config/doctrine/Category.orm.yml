@@ -1,0 +1,23 @@
+Roal\JewelryBundle\Entity\Category:
+    type: entity
+    table: null
+    id:
+        id:
+            type: integer
+            id: true
+            generator:
+                strategy: AUTO
+    fields:
+        userId:
+            type: integer
+            column: user_id
+        name:
+            type: string
+            length: 255
+        description:
+            type: string
+            length: 255
+        creationTs:
+            type: datetime
+            column: creation_ts
+    lifecycleCallbacks: {  }

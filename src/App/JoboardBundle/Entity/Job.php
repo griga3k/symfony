@@ -95,6 +95,8 @@ class Job
      */
     private $category;
 
+    public $file;
+
 
     /**
      * Get id
@@ -514,4 +516,107 @@ class Job
     {
         return Joborad::slugify($this->getLocation());
     }
+
+    public static function getTypes()
+    {
+        return [
+            'full-time' => 'Полный рабочий день',
+            'part-time' => 'Неполный рабочий день',
+            'freelance' => 'Фриланс'
+        ];
+    }
+
+    public static function getTypeValues()
+    {
+        return array_keys(self::getTypes());
+    }
+
+    protected function getUploadDir()
+    {
+        return 'uploads/jobs';
+    }
+
+    protected function getUploadRootDir()
+    {
+        return __DIR__.'/../../../../web/'.$this->getUploadDir();
+    }
+
+    public function getWebPath()
+    {
+        return null === $this->logo ? null : $this->getUploadDir().'/'.$this->logo;
+    }
+
+    public function getAbsolutePath()
+    {
+        return null === $this->logo ? null : $this->getUploadRootDir().'/'.$this->logo;
+    }
+
+    /**
+     * @ORM\PrePersist
+     */
+    public function preUpload()
+    {
+        if (null !== $this->file) {
+            // Генерируем уникальное имя для файла
+            $this->logo = uniqid().'.'.$this->file->guessExtension();
+        }
+    }
+
+    /**
+     * @ORM\PostPersist
+     */
+    public function upload()
+    {
+        if (null === $this->file) {
+            return;
+        }
+
+        // Перемещаем файл в наш каталог web/uploads/job
+        $this->file->move($this->getUploadRootDir(), $this->logo);
+
+        unset($this->file);
+    }
+
+    /**
+     * @ORM\PostRemove
+     */
+    public function removeUpload()
+    {
+        if ($this->logo) {
+            if ($file = $this->getAbsolutePath()) {
+                unlink($file);
+            }
+        }
+    }
+
+    /**
+     * @ORM\PrePersist
+     */
+    public function setTokenValue()
+    {
+        if(!$this->getToken()) {
+            $this->token = sha1($this->getEmail().rand(11111, 99999));
+        }
+    }
+
+    public function isExpired()
+    {
+        return $this->getDaysBeforeExpires() < 0;
+    }
+
+    public function expiresSoon()
+    {
+        return $this->getDaysBeforeExpires() < 5;
+    }
+
+    public function getDaysBeforeExpires()
+    {
+        return ceil(($this->getExpiresAt()->format('U') - time()) / 86400);
+    }
+
+    public function publish()
+    {
+        $this->setIsActivated(true);
+    }
+
 }
